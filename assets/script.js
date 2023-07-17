@@ -14,7 +14,7 @@ var searchList = []
 //function to fetch forecast data based on user input
 function callForecast(search) {
     var key = '5e6f355bc87b7f368b38aecdf2f70995';
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=" + 'Chicago' + "&appid=" + key;
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=" + search + "&appid=" + key;
       fetch(queryURL)
         .then(function(response) {
             if (response.ok) {
@@ -22,6 +22,7 @@ function callForecast(search) {
                     console.log(data);
                     console.log(data.city.name);
                     console.log(data.list[0].main.temp)
+                    displayForecast(data)
                 });
             } else {
                 alert('Invalid Input');
@@ -29,4 +30,18 @@ function callForecast(search) {
         })
   };
 
-callForecast()
+function callWeather(search) {
+    var key = 'd49b1f6a58f01678d1f0b70e468590c6';
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=" + search + "&appid=" + key;
+    fetch(weatherURL)
+    .then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                console.log(data)
+                displayWeather(data)
+            })
+        }
+    })
+};
+
+
