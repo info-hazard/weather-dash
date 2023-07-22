@@ -26,6 +26,39 @@ function timeDate(date){
     return dayOutput;
 }
 
+init()
+
+function init() {
+    var storedSearch = JSON.parse(localStorage.getItem('searchList'));
+    if (storedSearch !== null) {
+        searchList = storedSearch;
+    }
+    renderHistory()
+}
+function storeHistory() {
+    localStorage.setItem('searchList',JSON.stringify(searchList))
+}
+
+function renderHistory() {
+    historyEl.innerHTML = ''
+    for (var i = 0; i < searchList.length; i++) {
+        var search = searchList[i];
+        var listHistory = document.createElement('li');
+        listHistory.classList = 'list-group-item';
+        listHistory.setAttribute('id', `list${counter}`);
+        listHistory.setAttribute('data-search', search)
+        listHistory.textContent = search
+        historyEl.appendChild(listHistory);
+        counter++
+    }
+    if (!search) {
+        return;
+    } else {
+        callWeather(search)
+        callForecast(search)
+    };
+}
+
 // Function to fetch forecast data based on user input
 function callForecast(search) {
     var key = '5e6f355bc87b7f368b38aecdf2f70995';
