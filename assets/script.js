@@ -47,7 +47,7 @@ function callForecast(search) {
 
 // Function to fetch weather data based on user input
 function callWeather(search) {
-    var key = 'd49b1f6a58f01678d1f0b70e468590c6';
+    var key = '5e6f355bc87b7f368b38aecdf2f70995';
     var weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&q=" + search + "&appid=" + key;
     fetch(weatherURL)
     .then(function(response) {
@@ -59,6 +59,29 @@ function callWeather(search) {
         }
     })
 };
+
+// actuating displayWeather function to render elements and display icons and weather data
+var displayWeather = function (data) {
+    locationName.innerHTML = ''
+    tempEl.innerHTML = ''
+    humidityEl.innerHTML = ''
+    windEl.innerHTML = ''
+
+    var weatherType = data.weather[0].main
+    var img = ''
+    if (weatherType === "Clouds"){
+        img = '☁️'
+    } else if (weatherType === "Clear") {
+        img ='☀️'
+    } else if (weatherType === "Rain") {
+        img ='🌧️'
+    }
+
+    locationName.textContent = data.name + ' ' + timeDate() + ' ' + img
+    tempEl.textContent = 'Temperature: ' + data.main.temp + ' °F'
+    humidityEl.textContent = 'Humidity: ' + data.main.humidity + '%'
+    windEl.textContent = 'Wind Speed: ' + data.wind.speed + ' mph'
+}
 
 // Actuating displayForecast function to render elements and display cards
 var displayForecast = function (data) {
