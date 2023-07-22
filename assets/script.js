@@ -60,6 +60,50 @@ function callWeather(search) {
     })
 };
 
+// Actuating displayForecast function to render elements and display cards
+var displayForecast = function (data) {
+    forecastCardEl.innerHTML = ''
+    for(var i=0, j=0; j<=6; i=i+6){
+        var getDate = data.list[i].dt;
+        if(data.list[i].dt != data.list[i+1].dt) {
+            var d = new Date(0);
+            d.setUTCSeconds(getDate)
+            var date = d
+            console.log(date)
+            var month = date.getMonth()+1;
+            var day = date.getDate();
+            var year = date.getFullYear();
+            var cardDate = month + '/' + day + '/' + year;
+            var weatherType = data.list[i].weather[0].main;
+            var image = ''
+            if (weatherType === "Clouds"){
+                image = '☁️'
+            } else if (weatherType === "Clear") {
+                image ='☀️'
+            } else if (weatherType === "Rain") {
+                image ='🌧️'
+            }
+
+            var temperature = data.list[i].main.temp
+            var humidity = data.list[i].main.humidity
+            var windSpeed = data.list[i].wind.speed
+            
+            var weatherCard = 
+    `<div class="card m-2" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">${cardDate}</h5>
+            <p>${image}</p>
+            <p class="card-text">Temperature: ${temperature} °F</p>
+            <p class="card-text">Humidity: ${humidity}%</p>
+            <p class="card-text">Wind Speed: ${windSpeed} Mph</p>
+        </div>
+    </div>`
+    forecastCardEl.innerHTML += weatherCard
+    j++
+        }
+    }
+}
+
 
 
 
