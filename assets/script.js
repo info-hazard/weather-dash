@@ -160,6 +160,22 @@ var displayForecast = function (data) {
     }
 }
 
+searchBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+    var search = locationInput.value.trim()
+    if (search === '') {
+        return
+    } 
+    searchList.push(search);
+    storeHistory();
+    renderHistory();
+});
 
+historyEl.addEventListener("click", function(event){
+    if(event.target && event.target.nodeName == 'LI'){
+        callForecast(event.target.dataset.search)
+        callWeather(event.target.dataset.search)
+    }
+})
 
 
