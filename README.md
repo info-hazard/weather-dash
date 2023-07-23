@@ -23,10 +23,10 @@
   ## [Usage](#table-of-contents)
 
   Simply type in the city that you would like to view the 5-day weather forecast of.
-  
-  For more information on how to add screenshots for examples, visit the following website:
-  
-  [Mark Down Tutorial](https://agea.github.io/tutorial.md/)
+
+  [Deployment Link](https://info-hazard.github.io/weather-dash/)
+
+  ![alt text](./assets/images/screen.png)
   
   ## [License](#table-of-contents)
   The application is covered under the following license: [mit](https://choosealicense.com/licenses/mit)
